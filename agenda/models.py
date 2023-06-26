@@ -7,6 +7,8 @@ class Local(models.Model):
     nome = models.CharField(max_length=80)
     rua = models.CharField(max_length=120)
     numero = models.IntegerField()
+    foto = models.ImageField(upload_to='foto_locais', null=True, blank=True)
+
 
     def __str__(self):
         return f'{self.nome} na rua {self.rua}'
@@ -23,7 +25,7 @@ class Convidado(models.Model):
     )
 
     def __str__(self):
-        return f'{self.nome} - {self.email}'
+        return f'{self.nome} - {self.usuario.username}'
 
 
 class Compromisso(models.Model):

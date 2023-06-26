@@ -24,4 +24,4 @@ class CompromissoSerializer(serializers.HyperlinkedModelSerializer):
 class LocalSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Local
-        fields = ['url', 'nome', 'rua', 'numero']
+        fields = ['url', 'nome', 'rua', 'numero', 'foto']

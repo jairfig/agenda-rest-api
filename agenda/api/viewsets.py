@@ -37,6 +37,6 @@ class CompromissoViewSet(viewsets.ModelViewSet):
 
 
 class LocalViewSet(viewsets.ModelViewSet):
+    http_method_names = ['get', 'post', 'put', 'patch', 'delete', 'head', 'options', 'trace']
     queryset = Local.objects.all()
     serializer_class = LocalSerializer
-
