@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User, Group
 from agenda.models import Compromisso, Local, Convidado
 from rest_framework import serializers
+from rest_framework.fields import SerializerMethodField
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -22,16 +23,22 @@ class ConvidadoSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['url', 'nome', 'email', 'usuario']
 
 
-class CompromissoSerializer(serializers.HyperlinkedModelSerializer):
-    convidados = ConvidadoSerializer(many=True)
-    class Meta:
-        model = Compromisso
-        fields = ['url', 'descricao', 'data_inicio', 'data_fim', 'local', 'convidados']
-
-
 class LocalSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Local
         fields = ['url', 'nome', 'rua', 'numero', 'foto']
+
+
+class CompromissoSerializer(serializers.HyperlinkedModelSerializer):
+    convidados = ConvidadoSerializer(many=True)
+    local = LocalSerializer(many=False)
+    dt_ini = SerializerMethodField()
+    class Meta:
+        model = Compromisso
+        fields = ['url', 'descricao', 'dt_ini', 'data_fim', 'local', 'convidados']
+
+    def get_dt_ini(self, obj):
+        return obj.data_inicio.strftime("%d/%B/%Y")
+
 
 
