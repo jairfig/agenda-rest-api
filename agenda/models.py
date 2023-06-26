@@ -19,7 +19,7 @@ class Convidado(models.Model):
     nome = models.CharField(max_length=80)
     email = models.EmailField(null=True, blank=True)
     usuario = models.OneToOneField(
-        User, on_delete=models.CASCADE, null=True, blank=True, 
+        User, on_delete=models.CASCADE, null=True, blank=True,
     )
 
     def __str__(self):
@@ -31,7 +31,6 @@ class Compromisso(models.Model):
     data_inicio = models.DateTimeField(null=True)
     data_fim = models.DateTimeField(null=True)
     local = models.ForeignKey(Local, on_delete=models.CASCADE)
-
     convidados = models.ManyToManyField(Convidado)
 
     def __str__(self):

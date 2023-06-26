@@ -1,7 +1,8 @@
 from rest_framework import viewsets, permissions
+from rest_framework.response import Response
 from django.contrib.auth.models import User, Group
-from agenda.api.serializers import UserSerializer, GroupSerializer, CompromissoSerializer
-from agenda.models import Compromisso, Convidado
+from agenda.api.serializers import UserSerializer, GroupSerializer, CompromissoSerializer, LocalSerializer
+from agenda.models import Compromisso, Convidado, Local
 
 
 # Create your views here.
@@ -26,3 +27,16 @@ class CompromissoViewSet(viewsets.ModelViewSet):
         usuario_logado = self.request.user.username
         convidado = Convidado.objects.get(usuario__username=usuario_logado)
         return Compromisso.objects.filter(convidados=convidado)
+
+    def list(self, request, *args, **kwargs):
+        # return Response({'detail': 'Não é possível listar todos os compromissos.'}, status=status.HTTP_403_FORBIDDEN)
+        return Response({'teste': 123})
+
+    def create(self, request, *args, **kwargs):
+        pass
+
+
+class LocalViewSet(viewsets.ModelViewSet):
+    queryset = Local.objects.all()
+    serializer_class = LocalSerializer
+
