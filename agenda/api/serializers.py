@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from agenda.models import Local
+from agenda.models import Compromisso
 from rest_framework import serializers
 
 
@@ -13,3 +13,9 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
         fields = ['url', 'name']
+
+
+class CompromissoSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Compromisso
+        fields = ['url', 'descricao', 'data_inicio', 'data_fim']

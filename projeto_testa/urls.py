@@ -17,11 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from agenda.views import UserViewSet, GroupViewSet
+from agenda.api.viewsets import UserViewSet, GroupViewSet, CompromissoViewSet
 
 router = routers.DefaultRouter()
 router.register('users', UserViewSet)
 router.register('groups', GroupViewSet)
+router.register('compromissos', CompromissoViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
