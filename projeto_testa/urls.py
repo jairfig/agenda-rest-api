@@ -26,6 +26,7 @@ router.register('users', viewsets.UserViewSet)
 router.register('groups', viewsets.GroupViewSet)
 router.register('compromissos', viewsets.CompromissoViewSet)
 router.register('locais', viewsets.LocalViewSet)
+router.register('convidado', viewsets.ConvidadoViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
