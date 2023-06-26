@@ -22,16 +22,17 @@ class CompromissoViewSet(viewsets.ModelViewSet):
     queryset = Compromisso.objects.all()
     serializer_class = CompromissoSerializer
     permission_classes = [permissions.IsAuthenticated]
+    filterset_fields = ('descricao', 'data_inicio', )
 
     def get_queryset(self):
         #filtrando por query string (buscando compromisso pela descrição)
-        id = self.request.query_params.get('id', None)
-        descricao = self.request.query_params.get('descricao', None)
+        # id = self.request.query_params.get('id', None)
+        # descricao = self.request.query_params.get('descricao', None)
         queryset = Compromisso.objects.all()
-        if id is not None:
-            queryset = queryset.filter(id=id)
-        if descricao is not None:
-            queryset = queryset.filter(descricao=descricao)
+        # if id is not None:
+        #     queryset = queryset.filter(id=id)
+        # if descricao is not None:
+        #     queryset = queryset.filter(descricao__iexact=descricao)
         usuario_logado = self.request.user.username
         convidado = Convidado.objects.get(usuario__username=usuario_logado)
         # queryset.filter(convidados=convidado)
